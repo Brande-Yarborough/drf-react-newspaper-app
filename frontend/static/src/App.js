@@ -1,6 +1,10 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
 
 function App() {
   const [categories, setCategories] = useState(null); //use null because it is falsy
@@ -52,12 +56,30 @@ function App() {
   ));
 
   return (
-    <div className="App">
-      {categoriesHTML}
-      <button type="button" onClick={addCategory}>
-        Add category!
-      </button>
-    </div>
+    // <div className="App">
+    //   {categoriesHTML}
+    //   <button type="button" onClick={addCategory}>
+    //     Add category!
+    //   </button>
+    // </div>
+    <>
+      <header>The Greenville Times</header>
+
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#news">News</Nav.Link>
+            <Nav.Link href="#sports">Sports</Nav.Link>
+            <Nav.Link href="#downtown">Downtown</Nav.Link>
+          </Nav>
+
+          <Button type="button" variant="dark" onClick={addCategory}>
+            Add Category
+          </Button>
+        </Container>
+      </Navbar>
+    </>
   );
 }
 
