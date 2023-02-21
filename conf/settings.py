@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!)ch2d&r_&-1b2_(i85ezk=pm$iexw4wd_*x0+itx9p^hemh+%'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # local
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
+    'frontend.apps.FrontendConfig',
 
 
     # 3rd party
@@ -167,3 +168,9 @@ SITE_ID = 1
 # email backend
 # https://docs.djangoproject.com/en/4.1/topics/email/#email-backends
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Static file directories
+# https://docs.djangoproject.com/en/3.1/ref/settings/#staticfiles-dirs
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
