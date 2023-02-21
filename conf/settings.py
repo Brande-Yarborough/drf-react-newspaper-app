@@ -63,7 +63,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
 }
 
 MIDDLEWARE = [
@@ -164,14 +164,16 @@ AUTH_USER_MODEL = 'accounts.User'  # new
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-SITE_ID = 1
-
-# email backend
-# https://docs.djangoproject.com/en/4.1/topics/email/#email-backends
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # Static file directories
 # https://docs.djangoproject.com/en/3.1/ref/settings/#staticfiles-dirs
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
 REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
+
+
+SITE_ID = 1
+
+# email backend
+# https://docs.djangoproject.com/en/4.1/topics/email/#email-backends
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
