@@ -12,6 +12,16 @@ body {
   margin: 15px 30px;
 }
 
+.btn-primary {
+  background-color: black;
+  border-color: black;
+}
+
+.btn-primary:hover {
+  background-color: #41464b;
+  border-color: black;
+}
+
 .navbar {
   border-top: 3px solid;
   border-bottom: 3px solid;

@@ -7,6 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import NavLink from "react-bootstrap/esm/NavLink";
 import ArticleList from "./components/ArticleList";
+import LoginForm from "./components/LoginForm";
 
 function App() {
   const [categories, setCategories] = useState(null); //use null because it is falsy
@@ -77,11 +78,16 @@ function App() {
     <>
       <header>
         <h1 className="news-header">The Greenville Times</h1>
+
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+
       </header>
 
       <Navbar  className="navbar" bg="light" variant="light">
         <Nav className="nav-categories">
-          {categoriesHTML} setSelectedCategory={setSelectedCategory}
+          {categoriesHTML}
           {/* <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#news">News</Nav.Link>
           <Nav.Link href="#sports">Sports</Nav.Link>
