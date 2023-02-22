@@ -8,10 +8,12 @@ import Button from "react-bootstrap/Button";
 import NavLink from "react-bootstrap/esm/NavLink";
 import ArticleList from "./components/ArticleList";
 import LoginForm from "./components/LoginForm";
+import RegistrationForm from "./components/RegistrationForm";
 
 function App() {
   const [categories, setCategories] = useState(null); //use null because it is falsy
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [setLogin] = useState(null);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -57,6 +59,10 @@ function App() {
     return <div>Fetching data ...</div>;
   }
 
+  const handleLogin = () => {
+    setLogin({LoginForm})
+  }
+
   const categoriesHTML = categories.map((category) => (
     <Nav.Item key={category.id} onClick={() => setSelectedCategory(category.id)}>
       <Nav.Link>{category.title}</Nav.Link>
@@ -79,9 +85,10 @@ function App() {
       <header>
         <h1 className="news-header">The Greenville Times</h1>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={handleLogin}>
           Login
         </Button>
+
 
       </header>
 

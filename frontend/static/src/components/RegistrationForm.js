@@ -5,11 +5,12 @@ import Form from "react-bootstrap/Form";
 
 const INITIAL_STATE = {
   username: "",
+  password1: "",
+  password2: "",
   email: "",
-  password: "",
 };
 
-function LoginForm(props) {
+function RegistrationForm(props) {
   const [state, setState] = useState(INITIAL_STATE);
 
   const handleInput = (e) => {
@@ -36,7 +37,7 @@ function LoginForm(props) {
       },
       body: JSON.stringify(state), //state is object that has all properties to send up on post request: name, email, pass
     };
-    const response = await fetch("/dj-rest-auth/login/", options).catch(
+    const response = await fetch("/dj-rest-auth/registration/", options).catch(
       handleError
     );
     if (!response.ok) {
@@ -47,42 +48,7 @@ function LoginForm(props) {
     //when logout, need to remove cookie
     props.setAuth(true);
   };
-
   return (
-    // <form onSubmit={handleSubmit}>
-
-    //   <label htmlFor="username"></label>
-    //   <input
-    //     id="username"
-    //     type="text"
-    //     placeholder="Enter username"
-    //     name="username"
-    //     value={state.username}
-    //     onChange={handleInput}
-    //   />
-
-    //   <label htmlFor="email"></label>
-    //   <input
-    //     id="email"
-    //     type="email"
-    //     placeholder="Enter email"
-    //     name="email"
-    //     value={state.email}
-    //     onChange={handleInput}
-    //   />
-
-    //   <label htmlFor="password">Password</label>
-    //   <input
-    //     id="password"
-    //     type="password"
-    //     placeholder="password"
-    //     name="password"
-    //     value={state.password}
-    //     onChange={handleInput}
-    //   />
-
-    //   <button type="submit">Login</button>
-    // </form>
     <>
       <h1 className="news-header">The Greenville Times</h1>
 
@@ -90,6 +56,7 @@ function LoginForm(props) {
         <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control
+            //   id="username"
             type="text"
             placeholder="Enter username"
             name="username"
@@ -98,9 +65,34 @@ function LoginForm(props) {
           />
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password 1</Form.Label>
+          <Form.Control
+            //   id="password"
+            type="password"
+            placeholder="Enter password 1"
+            name="password"
+            value={state.password1}
+            onChange={handleInput}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password 2</Form.Label>
+          <Form.Control
+            //   id="password"
+            type="password"
+            placeholder="Enter password 2"
+            name="password"
+            value={state.password2}
+            onChange={handleInput}
+          />
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email Address</Form.Label>
           <Form.Control
+            //   id="email"
             type="email"
             placeholder="Enter email"
             name="email"
@@ -109,29 +101,12 @@ function LoginForm(props) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            name="password"
-            value={state.password}
-            onChange={handleInput}
-          />
-        </Form.Group>
-
         <Button variant="primary" type="submit">
-          Login
+          Register
         </Button>
-
-        <p>
-          Don't have an account? Click
-          <Button variant="link">here</Button>
-          to register.
-        </p>
       </Form>
     </>
   );
 }
 
-export default LoginForm;
+export default RegistrationForm;
