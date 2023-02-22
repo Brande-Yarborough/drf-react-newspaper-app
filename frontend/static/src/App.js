@@ -57,10 +57,14 @@ function App() {
   }
 
   const categoriesHTML = categories.map((category) => (
-    <NavLink className="nav-text" key={category.id} href={category.title} 
-    onClick={() => setSelectedCategory(category.id)} >
-       {category.title}
-    </NavLink>
+    <Nav.Item key={category.id} onClick={() => setSelectedCategory(category.id)}>
+      <Nav.Link>{category.title}</Nav.Link>
+    </Nav.Item>
+
+    // <NavLink key={category.id} href={category.title} 
+    // onClick={() => setSelectedCategory(category.id)} >
+    //    {category.title}
+    // </NavLink>
   ));
 
   return (
