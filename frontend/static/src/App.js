@@ -1,4 +1,4 @@
-import ".";
+import "./App.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Container from "react-bootstrap/Container";
@@ -68,10 +68,10 @@ function App() {
     // </div>
     <>
       <header>
-        <h1>The Greenville Times</h1>
+        <h1 className="news-header">The Greenville Times</h1>
       </header>
 
-      <Navbar bg="dark" variant="dark">
+      <Navbar  className="navbar" bg="light" variant="light">
         <Container>
           <Nav className="me-auto">
             {categoriesHTML}
@@ -88,6 +88,7 @@ function App() {
         </Container>
       </Navbar>
       <ArticleList/>
+      <footer>© CCS News 2023</footer>
     </>
 
     

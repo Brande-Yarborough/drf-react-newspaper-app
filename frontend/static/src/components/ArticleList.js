@@ -54,7 +54,7 @@ function ArticleList() {
   }
 
   const articlesHTML = articles.map((article) => (
-    <Card style={{ width: "60rem" }}>
+    <Card className="card" style={{ width: "60rem" }}>
       <Card.Img variant="top" src={article.image} />
       <Card.Body>
         <Card.Title>{article.title}</Card.Title>
