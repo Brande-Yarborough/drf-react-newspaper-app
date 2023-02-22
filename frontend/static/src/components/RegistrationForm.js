@@ -46,7 +46,7 @@ function RegistrationForm(props) {
     const data = await response.json(); //when we login and are registered we get key
     Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
     //when logout, need to remove cookie
-    props.setAuth(true);
+    props.setPage("articles");
   };
   return (
     <>

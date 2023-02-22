@@ -56,7 +56,7 @@ function ArticleList({ selectedCategory }) {
   }
 
   const articlesHTML = articles.map((article) => (
-    <Card className="card" style={{ width: "60rem" }}>
+    <Card className="card" style={{ width: "60rem" }} key={article.id}>
       <Card.Img variant="top" src={article.image} />
       <Card.Body>
         <Card.Title>{article.title}</Card.Title>

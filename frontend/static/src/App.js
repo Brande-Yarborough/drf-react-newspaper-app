@@ -1,19 +1,17 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import NavLink from "react-bootstrap/esm/NavLink";
 import ArticleList from "./components/ArticleList";
 import LoginForm from "./components/LoginForm";
-import RegistrationForm from "./components/RegistrationForm";
 
 function App() {
   const [categories, setCategories] = useState(null); //use null because it is falsy
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [setLogin] = useState(null);
+  // const [page, setPage] = useState(!!Cookies.get("Authorization") ? 'articles' : 'login');
+  const [page, setPage] = useState('articles');
 
   useEffect(() => {
     const getCategories = async () => {
@@ -59,10 +57,6 @@ function App() {
     return <div>Fetching data ...</div>;
   }
 
-  const handleLogin = () => {
-    setLogin({LoginForm})
-  }
-
   const categoriesHTML = categories.map((category) => (
     <Nav.Item key={category.id} onClick={() => setSelectedCategory(category.id)}>
       <Nav.Link>{category.title}</Nav.Link>
@@ -73,7 +67,6 @@ function App() {
     //    {category.title}
     // </NavLink>
   ));
-
   return (
     // <div className="App">
     //   {categoriesHTML}
@@ -85,21 +78,20 @@ function App() {
       <header>
         <h1 className="news-header">The Greenville Times</h1>
 
-        <Button variant="primary" type="submit" onClick={handleLogin}>
-          Login
-        </Button>
+       
 
-
+    
       </header>
-
+      {page === 'articles' && 
+      <>
+      
       <Navbar  className="navbar" bg="light" variant="light">
         <Nav className="nav-categories">
+        <Button variant="primary" type="button" onClick={() => setPage('login')}>
+          Login
+        </Button>
           {categoriesHTML}
-          {/* <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#news">News</Nav.Link>
-          <Nav.Link href="#sports">Sports</Nav.Link>
-          <Nav.Link href="#downtown">Downtown</Nav.Link>
-          <Nav.Link href="#food">Food</Nav.Link> */}
+          
         </Nav>
 
           {/* <Button type="button" variant="dark" onClick={addCategory}>
@@ -107,6 +99,10 @@ function App() {
           </Button> */}
       </Navbar>
       {selectedCategory && <ArticleList selectedCategory={selectedCategory}/>}
+      </>
+    }
+
+    {page === 'login' && <LoginForm  setPage={setPage}/>}
       <footer>© CCS News 2023</footer>
     </>
 

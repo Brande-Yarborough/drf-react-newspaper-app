@@ -2,6 +2,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import App from "../App";
 
 const INITIAL_STATE = {
   username: "",
@@ -45,7 +46,7 @@ function LoginForm(props) {
     const data = await response.json(); //when we login and are registered we get key
     Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
     //when logout, need to remove cookie
-    props.setAuth(true);
+    props.setPage("articles");
   };
 
   return (
@@ -84,8 +85,6 @@ function LoginForm(props) {
     //   <button type="submit">Login</button>
     // </form>
     <>
-      <h1 className="news-header">The Greenville Times</h1>
-
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
@@ -126,7 +125,13 @@ function LoginForm(props) {
 
         <p>
           Don't have an account? Click
-          <Button variant="link">here</Button>
+          <Button
+            type="button"
+            variant="link"
+            onClick={() => props.setPage("registration")}
+          >
+            here
+          </Button>
           to register.
         </p>
       </Form>
