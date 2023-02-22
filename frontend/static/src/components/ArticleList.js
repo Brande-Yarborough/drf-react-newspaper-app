@@ -8,12 +8,14 @@ import Button from "react-bootstrap/Button";
 import NavLink from "react-bootstrap/esm/NavLink";
 import Card from "react-bootstrap/Card";
 
-function ArticleList() {
+function ArticleList({ selectedCategory }) {
   const [articles, setArticles] = useState(null); //use null because it is falsy
 
   useEffect(() => {
     const getArticles = async () => {
-      const response = await fetch("/api_v1/articles/articles");
+      const response = await fetch(
+        `/api_v1/articles/articles/?category=${selectedCategory}`
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not OK");
@@ -24,7 +26,7 @@ function ArticleList() {
     };
     //call getArticles
     getArticles();
-  }, []);
+  }, [selectedCategory]);
 
   const addArticle = async () => {
     const article = {

@@ -23,11 +23,17 @@ class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 # API end point to show all articles, List gets many records
 class ArticleListAPIView(generics.ListCreateAPIView):
     # what am i getting,  go to article table and get all objects or articles
-    queryset = Article.objects.all()
+    # queryset = Article.objects.all()
     # what it looks like, this is how you need to return them
     serializer_class = ArticleSerializer
 
+    # filter by category
+    # https://www.django-rest-framework.org/api-guide/filtering/#filtering-against-query-parameters
+    def get_queryset(self):
+        category = self.request.query_params.get('category')
+        return Article.objects.filter(category=category)
     # target for post request
+
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 

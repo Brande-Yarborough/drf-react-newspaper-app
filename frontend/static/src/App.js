@@ -10,6 +10,7 @@ import ArticleList from "./components/ArticleList";
 
 function App() {
   const [categories, setCategories] = useState(null); //use null because it is falsy
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -21,6 +22,7 @@ function App() {
       const data = await response.json();
       //method to get Categories
       setCategories(data);
+      setSelectedCategory(data[0].id);
     };
     //call getCategories
     getCategories();
@@ -47,6 +49,7 @@ function App() {
     const data = await response.json();
     // console.log({ data });
     setCategories([...categories, data]);
+    setSelectedCategory(data.id);
   };
 
   if (!categories) {
@@ -54,8 +57,9 @@ function App() {
   }
 
   const categoriesHTML = categories.map((category) => (
-    <NavLink className="nav-text" key={category.id} href={category.title}>
-      {category.title}
+    <NavLink className="nav-text" key={category.id} href={category.title} 
+    onClick={() => setSelectedCategory(category.id)} >
+       {category.title}
     </NavLink>
   ));
 
@@ -73,7 +77,7 @@ function App() {
 
       <Navbar  className="navbar" bg="light" variant="light">
         <Nav className="nav-categories">
-          {categoriesHTML}
+          {categoriesHTML} setSelectedCategory={setSelectedCategory}
           {/* <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#news">News</Nav.Link>
           <Nav.Link href="#sports">Sports</Nav.Link>
@@ -85,7 +89,7 @@ function App() {
             Add Category
           </Button> */}
       </Navbar>
-      <ArticleList/>
+      {selectedCategory && <ArticleList selectedCategory={selectedCategory}/>}
       <footer>© CCS News 2023</footer>
     </>
 
