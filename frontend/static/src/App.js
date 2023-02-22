@@ -1,10 +1,12 @@
-import "./App.css";
+import ".";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
+import NavLink from "react-bootstrap/esm/NavLink";
+import ArticleList from "./components/ArticleList";
 
 function App() {
   const [categories, setCategories] = useState(null); //use null because it is falsy
@@ -52,7 +54,9 @@ function App() {
   }
 
   const categoriesHTML = categories.map((category) => (
-    <li key={category.id}>{category.title}</li>
+    <NavLink key={category.id} href={category.title}>
+      {category.title}
+    </NavLink>
   ));
 
   return (
@@ -63,23 +67,30 @@ function App() {
     //   </button>
     // </div>
     <>
-      <header>The Greenville Times</header>
+      <header>
+        <h1>The Greenville Times</h1>
+      </header>
 
       <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            {categoriesHTML}
+            {/* <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#news">News</Nav.Link>
             <Nav.Link href="#sports">Sports</Nav.Link>
             <Nav.Link href="#downtown">Downtown</Nav.Link>
+            <Nav.Link href="#food">Food</Nav.Link> */}
           </Nav>
 
-          <Button type="button" variant="dark" onClick={addCategory}>
+          {/* <Button type="button" variant="dark" onClick={addCategory}>
             Add Category
-          </Button>
+          </Button> */}
         </Container>
       </Navbar>
+      <ArticleList/>
     </>
+
+    
   );
 }
 
