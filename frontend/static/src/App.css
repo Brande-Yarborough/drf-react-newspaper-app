@@ -16,9 +16,12 @@ body {
   border-top: 3px solid;
   border-bottom: 3px solid;
   margin-bottom: 80px;
+  justify-content: center;
 }
-nav {
-  text-align: center;
+
+.navbar-expand .navbar-nav {
+  width: 80%;
+  justify-content: space-around;
 }
 
 .article-container {

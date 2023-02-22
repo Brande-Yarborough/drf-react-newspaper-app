@@ -54,7 +54,7 @@ function App() {
   }
 
   const categoriesHTML = categories.map((category) => (
-    <NavLink key={category.id} href={category.title}>
+    <NavLink className="nav-text" key={category.id} href={category.title}>
       {category.title}
     </NavLink>
   ));
@@ -72,20 +72,18 @@ function App() {
       </header>
 
       <Navbar  className="navbar" bg="light" variant="light">
-        <Container>
-          <Nav className="me-auto">
-            {categoriesHTML}
-            {/* <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#news">News</Nav.Link>
-            <Nav.Link href="#sports">Sports</Nav.Link>
-            <Nav.Link href="#downtown">Downtown</Nav.Link>
-            <Nav.Link href="#food">Food</Nav.Link> */}
-          </Nav>
+        <Nav className="nav-categories">
+          {categoriesHTML}
+          {/* <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#news">News</Nav.Link>
+          <Nav.Link href="#sports">Sports</Nav.Link>
+          <Nav.Link href="#downtown">Downtown</Nav.Link>
+          <Nav.Link href="#food">Food</Nav.Link> */}
+        </Nav>
 
           {/* <Button type="button" variant="dark" onClick={addCategory}>
             Add Category
           </Button> */}
-        </Container>
       </Navbar>
       <ArticleList/>
       <footer>© CCS News 2023</footer>
