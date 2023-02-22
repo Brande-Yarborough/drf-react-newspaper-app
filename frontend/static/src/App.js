@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import ArticleList from "./components/ArticleList";
 import LoginForm from "./components/LoginForm";
+import RegistrationForm from "./components/RegistrationForm";
 
 function App() {
   const [categories, setCategories] = useState(null); //use null because it is falsy
@@ -77,32 +78,26 @@ function App() {
     <>
       <header>
         <h1 className="news-header">The Greenville Times</h1>
-
-       
-
-    
       </header>
       {page === 'articles' && 
       <>
-      
       <Navbar  className="navbar" bg="light" variant="light">
         <Nav className="nav-categories">
         <Button variant="primary" type="button" onClick={() => setPage('login')}>
           Login
         </Button>
           {categoriesHTML}
-          
         </Nav>
-
           {/* <Button type="button" variant="dark" onClick={addCategory}>
             Add Category
           </Button> */}
-      </Navbar>
+          </Navbar>
       {selectedCategory && <ArticleList selectedCategory={selectedCategory}/>}
       </>
     }
 
     {page === 'login' && <LoginForm  setPage={setPage}/>}
+    {page === 'registration' && <RegistrationForm setPage={setPage}/>}
       <footer>© CCS News 2023</footer>
     </>
 
