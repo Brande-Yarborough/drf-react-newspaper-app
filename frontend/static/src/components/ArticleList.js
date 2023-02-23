@@ -14,7 +14,7 @@ function ArticleList({ selectedCategory }) {
   useEffect(() => {
     const getArticles = async () => {
       const response = await fetch(
-        `/api_v1/articles/articles/?category=${selectedCategory}`
+        `/api_v1/articles/?category=${selectedCategory}`
       );
 
       if (!response.ok) {
@@ -41,7 +41,7 @@ function ArticleList({ selectedCategory }) {
       body: JSON.stringify(article),
     };
 
-    const response = await fetch("/api_v1/articles/articles", options);
+    const response = await fetch("/api_v1/articles/", options);
     if (!response.ok) {
       throw new Error("Network response not ok.");
     }

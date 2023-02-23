@@ -23,5 +23,11 @@ class Article(models.Model):
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    # time stamp with moment of creation
+    created_at = models.DateTimeField(auto_now_add=True)
+    # automatically updates with any changes made to post
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=False)
+
     def __str__(self):
         return self.title

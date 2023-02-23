@@ -75,18 +75,24 @@ function App() {
     //     Add category!
     //   </button>
     // </div>
+
+    //login/logout button...conditionally render which button based on whether or not a user is logged in or not
     <>
       <header>
         <h1 className="news-header">The Greenville Times</h1>
+
       </header>
       {page === 'articles' && 
       <>
+
       <Navbar  className="navbar" bg="light" variant="light">
-        <Nav className="nav-categories">
-        <Button variant="primary" type="button" onClick={() => setPage('login')}>
+      <Button className="homepage-login" variant="primary" type="button" onClick={() => setPage('login')}>
           Login
         </Button>
+
+        <Nav className="nav-categories">
           {categoriesHTML}
+
         </Nav>
           {/* <Button type="button" variant="dark" onClick={addCategory}>
             Add Category
@@ -98,6 +104,7 @@ function App() {
 
     {page === 'login' && <LoginForm  setPage={setPage}/>}
     {page === 'registration' && <RegistrationForm setPage={setPage}/>}
+
       <footer>© CCS News 2023</footer>
     </>
 

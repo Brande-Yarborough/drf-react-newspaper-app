@@ -58,7 +58,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -177,3 +177,10 @@ SITE_ID = 1
 # https://docs.djangoproject.com/en/4.1/topics/email/#email-backends
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# dj-rest-auth configuration
+# https://dj-rest-auth.readthedocs.io/en/latest/configuration.html
+
+REST_AUTH = {
+    'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
+}

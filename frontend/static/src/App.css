@@ -6,14 +6,27 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 
+header {
+  /* display: flex; */
+  align-items: center;
+  text-align: center;
+}
+
 .news-header {
   font-family: "Old English Five", sans-serif;
   text-align: center;
   margin: 15px 30px;
 }
 
+.homepage-login {
+  background-color: #567b95;
+  height: 40px;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
 .btn-primary {
-  background-color: black;
+  background-color: #567b95;
   border-color: black;
 }
 
@@ -23,8 +36,9 @@ body {
 }
 
 .navbar {
-  border-top: 3px solid;
+  border-top: 1px solid #ebebeb;
   border-bottom: 3px solid;
+  border-bottom-style: double;
   margin-bottom: 80px;
   justify-content: center;
 }
