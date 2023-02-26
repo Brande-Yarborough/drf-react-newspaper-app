@@ -29,6 +29,11 @@ function RegistrationForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (state.password1 !== state.password2) {
+      setError("Passwords do not match!");
+      return;
+    }
+
     const options = {
       method: "POST",
       headers: {
@@ -62,7 +67,7 @@ function RegistrationForm(props) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword1">
+        <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -70,10 +75,11 @@ function RegistrationForm(props) {
             name="password-1"
             value={state.password1}
             onChange={handleInput}
+            required
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword2">
+        <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Verify Password</Form.Label>
           <Form.Control
             type="password"
@@ -81,7 +87,9 @@ function RegistrationForm(props) {
             name="password-2"
             value={state.password2}
             onChange={handleInput}
+            required
           />
+          <div style={{ color: "red" }}>{error}</div>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">

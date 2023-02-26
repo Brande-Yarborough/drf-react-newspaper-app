@@ -1,11 +1,7 @@
 // import "./App.css";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import NavLink from "react-bootstrap/esm/NavLink";
 import Card from "react-bootstrap/Card";
 
 function ArticleList({ selectedCategory }) {
@@ -74,7 +70,7 @@ function ArticleList({ selectedCategory }) {
           <Card style={{ width: "18rem" }}>
             <Card.Img
               variant="top"
-              src="media/basketball.jpg"
+              src="media/aside/basketball.jpg"
               alt="basketball"
             />
             <Card.Body>
@@ -92,7 +88,11 @@ function ArticleList({ selectedCategory }) {
           </Card>
 
           <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src="media/concert.jpg" alt="concert" />
+            <Card.Img
+              variant="top"
+              src="media/aside/concert.jpg"
+              alt="concert"
+            />
             <Card.Body>
               <Card.Title>Beyonce Rennaisance Tour</Card.Title>
               <Button>
@@ -108,7 +108,11 @@ function ArticleList({ selectedCategory }) {
           </Card>
 
           <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src="media/duck2.jpg" alt="rubber ducks" />
+            <Card.Img
+              variant="top"
+              src="media/aside/duck2.jpg"
+              alt="rubber ducks"
+            />
             <Card.Body>
               <Card.Title>Reedy River Duck Derby</Card.Title>
               <Button>
@@ -124,7 +128,7 @@ function ArticleList({ selectedCategory }) {
           </Card>
 
           <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src="media/laptop.jpg" alt="laptop" />
+            <Card.Img variant="top" src="media/aside/laptop.jpg" alt="laptop" />
             <Card.Body>
               <Card.Title>Carolina Code School Demo Day</Card.Title>
               <Button>
