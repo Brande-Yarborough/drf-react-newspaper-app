@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 
 function RegistrationForm(props) {
   const [state, setState] = useState(INITIAL_STATE);
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   const handleInput = (e) => {
     const { name, value } = e.target; //value of this inside event listener is event.target, value of this in fat arrow is LoginForm
@@ -73,7 +73,7 @@ function RegistrationForm(props) {
           <Form.Control
             type="password"
             placeholder="Enter password"
-            name="password-1"
+            name="password1"
             value={state.password1}
             onChange={handleInput}
             required
@@ -85,7 +85,7 @@ function RegistrationForm(props) {
           <Form.Control
             type="password"
             placeholder="Verify password"
-            name="password-2"
+            name="password2"
             value={state.password2}
             onChange={handleInput}
             required

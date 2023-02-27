@@ -3,9 +3,29 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
-function ArticleList({ selectedCategory }) {
+function ArticleList() {
   const [articles, setArticles] = useState(null); //use null because it is falsy
+  const [categories, setCategories] = useState(null); //use null because it is falsy
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await fetch("/api_v1/articles/categories/");
+
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      const data = await response.json();
+      //method to get Categories
+      setCategories(data);
+      setSelectedCategory(data[0].id);
+    };
+    //call getCategories
+    getCategories();
+  }, []);
 
   useEffect(() => {
     const getArticles = async () => {
@@ -51,6 +71,15 @@ function ArticleList({ selectedCategory }) {
     return <div>Fetching data ...</div>;
   }
 
+  const categoriesHTML = categories.map((category) => (
+    <Nav.Item
+      key={category.id}
+      onClick={() => setSelectedCategory(category.id)}
+    >
+      <Nav.Link>{category.title}</Nav.Link>
+    </Nav.Item>
+  ));
+
   const articlesHTML = articles.map((article) => (
     <Card className="card" style={{ width: "60rem" }} key={article.id}>
       <Card.Img variant="top" src={article.image} />
@@ -63,6 +92,10 @@ function ArticleList({ selectedCategory }) {
 
   return (
     <>
+      <Navbar className="navbar" bg="light" variant="light">
+        <Nav className="nav-categories">{categoriesHTML}</Nav>
+      </Navbar>
+
       <div className="main-container">
         <section className="article-container">{articlesHTML}</section>
         <aside className="main-aside">

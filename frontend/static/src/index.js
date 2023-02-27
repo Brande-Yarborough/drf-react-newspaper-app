@@ -3,10 +3,12 @@ import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Main from "./components/Main";
 import App from "./components/App/App.js";
 import LoginForm from "./components/Auth/LoginForm";
 import RegistrationForm from "./components/Auth/RegistrationForm";
 import reportWebVitals from "./reportWebVitals";
+import ArticleList from "./components/ArticleList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,8 +16,9 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="login" element={<LoginForm />}></Route>
-          <Route path="register" element={<RegistrationForm />}></Route>
+          <Route path="login" element={<LoginForm />} />
+          <Route path="register" element={<RegistrationForm />} />
+          <Route index element={<ArticleList />} />
         </Route>
         {/* //always put this at bottom for 404 page */}
         <Route

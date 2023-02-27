@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 // import App from "../App";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
 const INITIAL_STATE = {
   username: "",
@@ -130,15 +132,19 @@ function LoginForm(props) {
 
         <p>
           Don't have an account? Click
-          <Button
+          <NavLink to="/register">here</NavLink>
+          to register.
+        </p>
+
+
+          
+          {/* <Button
             type="button"
             variant="link"
             onClick={() => props.setPage("registration")}
           >
             here
-          </Button>
-          to register.
-        </p>
+          </Button> */}
       </Form>
     </>
   );
