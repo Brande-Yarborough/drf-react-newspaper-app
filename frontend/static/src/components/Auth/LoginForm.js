@@ -2,7 +2,8 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import App from "../App";
+// import App from "../App";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const INITIAL_STATE = {
   username: "",
@@ -11,6 +12,8 @@ const INITIAL_STATE = {
 };
 
 function LoginForm(props) {
+  const navigate = useNavigate();
+  const setAuth = useOutletContext();
   const [state, setState] = useState(INITIAL_STATE);
 
   const handleInput = (e) => {
@@ -46,7 +49,9 @@ function LoginForm(props) {
     const data = await response.json(); //when we login and are registered we get key
     Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
     //when logout, need to remove cookie
-    props.setPage("articles");
+    // props.setPage("articles");
+    setAuth(true);
+    navigate("/");
   };
 
   return (

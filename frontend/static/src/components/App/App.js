@@ -4,15 +4,18 @@ import Cookies from "js-cookie";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import ArticleList from "./components/ArticleList";
-import LoginForm from "./components/LoginForm";
-import RegistrationForm from "./components/RegistrationForm";
+import ArticleList from "../ArticleList";
+import LoginForm from "../Auth/LoginForm";
+import RegistrationForm from "../Auth/RegistrationForm";
+import Header from "../Header/Header";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [categories, setCategories] = useState(null); //use null because it is falsy
   const [selectedCategory, setSelectedCategory] = useState(null);
   // const [page, setPage] = useState(!!Cookies.get("Authorization") ? 'articles' : 'login');
-  const [page, setPage] = useState('articles');
+  const [page, setPage] = useState("articles");
+  const [isAuth, setAuth] = useState(false);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -59,11 +62,14 @@ function App() {
   }
 
   const categoriesHTML = categories.map((category) => (
-    <Nav.Item key={category.id} onClick={() => setSelectedCategory(category.id)}>
+    <Nav.Item
+      key={category.id}
+      onClick={() => setSelectedCategory(category.id)}
+    >
       <Nav.Link>{category.title}</Nav.Link>
     </Nav.Item>
 
-    // <NavLink key={category.id} href={category.title} 
+    // <NavLink key={category.id} href={category.title}
     // onClick={() => setSelectedCategory(category.id)} >
     //    {category.title}
     // </NavLink>
@@ -78,37 +84,38 @@ function App() {
 
     //login/logout button...conditionally render which button based on whether or not a user is logged in or not
     <>
-      <header>
+      {/* <header>
         <h1 className="news-header">The Greenville Times</h1>
+      </header> */}
+      <Header isAuth={isAuth} />
+      <Outlet context={[setAuth]} />
+      {/* {page === "articles" && ( */}
 
-      </header>
-      {page === 'articles' && 
-      <>
+      {/* <Navbar className="navbar" bg="light" variant="light">
+            <Button
+              className="homepage-login"
+              variant="primary"
+              type="button"
+              onClick={() => setPage("login")}
+            >
+              Login
+            </Button>
 
-      <Navbar  className="navbar" bg="light" variant="light">
-      <Button className="homepage-login" variant="primary" type="button" onClick={() => setPage('login')}>
-          Login
-        </Button>
-
-        <Nav className="nav-categories">
-          {categoriesHTML}
-
-        </Nav>
-          {/* <Button type="button" variant="dark" onClick={addCategory}>
+            <Nav className="nav-categories">{categoriesHTML}</Nav> */}
+      {/* <Button type="button" variant="dark" onClick={addCategory}>
             Add Category
           </Button> */}
-          </Navbar>
-      {selectedCategory && <ArticleList selectedCategory={selectedCategory}/>}
-      </>
-    }
+      {/* </Navbar>
+          {selectedCategory && (
+            <ArticleList selectedCategory={selectedCategory} />
+          )} */}
+      {/* )} */}
 
-    {page === 'login' && <LoginForm  setPage={setPage}/>}
-    {page === 'registration' && <RegistrationForm setPage={setPage}/>}
+      {/* {page === "login" && <LoginForm setPage={setPage} />}
+      {page === "registration" && <RegistrationForm setPage={setPage} />} */}
 
       <footer>© CCS News 2023</footer>
     </>
-
-    
   );
 }
 

@@ -12,6 +12,7 @@ const INITIAL_STATE = {
 
 function RegistrationForm(props) {
   const [state, setState] = useState(INITIAL_STATE);
+  const [error, setError] = useState("")
 
   const handleInput = (e) => {
     const { name, value } = e.target; //value of this inside event listener is event.target, value of this in fat arrow is LoginForm

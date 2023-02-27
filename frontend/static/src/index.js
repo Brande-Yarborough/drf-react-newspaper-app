@@ -2,13 +2,32 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import App from "./App";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import App from "./components/App/App.js";
+import LoginForm from "./components/Auth/LoginForm";
+import RegistrationForm from "./components/Auth/RegistrationForm";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="login" element={<LoginForm />}></Route>
+          <Route path="register" element={<RegistrationForm />}></Route>
+        </Route>
+        {/* //always put this at bottom for 404 page */}
+        <Route
+          path="*"
+          element={
+            <main>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
