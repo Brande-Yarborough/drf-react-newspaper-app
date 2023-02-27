@@ -68,7 +68,7 @@ function RegistrationForm(props) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="formBasicPassword1">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -80,7 +80,7 @@ function RegistrationForm(props) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="formBasicPassword2">
           <Form.Label>Verify Password</Form.Label>
           <Form.Control
             type="password"

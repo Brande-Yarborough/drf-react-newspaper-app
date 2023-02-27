@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 
 function LoginForm(props) {
   const navigate = useNavigate();
-  const setAuth = useOutletContext();
+  const [setAuth] = useOutletContext();
   const [state, setState] = useState(INITIAL_STATE);
 
   const handleInput = (e) => {

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Main from "./components/Main";
 import App from "./components/App/App.js";
 import LoginForm from "./components/Auth/LoginForm";
 import RegistrationForm from "./components/Auth/RegistrationForm";
@@ -18,6 +17,8 @@ root.render(
         <Route path="/" element={<App />}>
           <Route path="login" element={<LoginForm />} />
           <Route path="register" element={<RegistrationForm />} />
+          {/* Index routes render into their parent's Outlet at their parent's URL (like a default child route). */}
+          {/* https://reactrouter.com/en/main/route/route#index */}
           <Route index element={<ArticleList />} />
         </Route>
         {/* //always put this at bottom for 404 page */}
