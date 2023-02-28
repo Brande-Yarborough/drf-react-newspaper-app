@@ -87,6 +87,7 @@ function ArticleList() {
       <Card.Img variant="top" src={article.image} />
       <Card.Body>
         <Card.Title>{article.title}</Card.Title>
+        <Card.Title>Author: {article.author_name}</Card.Title>
         <Card.Text>{article.body}</Card.Text>
       </Card.Body>
     </Card>

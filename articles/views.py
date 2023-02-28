@@ -27,7 +27,7 @@ class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 # API end point to show all articles, List gets many records
 class ArticleListAPIView(generics.ListCreateAPIView):
     # what am i getting,  go to article table and get all objects or articles
-    queryset = Article.objects.order_by('-created_at')
+    # queryset = Article.objects.order_by('-created_at')
     # what it looks like, this is how you need to return them
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -36,7 +36,7 @@ class ArticleListAPIView(generics.ListCreateAPIView):
     # https://www.django-rest-framework.org/api-guide/filtering/#filtering-against-query-parameters
     def get_queryset(self):
         category = self.request.query_params.get('category')
-        return Article.objects.filter(category=category)
+        return Article.objects.filter(category=category).order_by('-created_at')
     # target for post request
 
     def perform_create(self, serializer):

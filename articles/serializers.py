@@ -11,9 +11,10 @@ class CategorySerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     # https://www.django-rest-framework.org/api-guide/fields/#serializermethodfield
     is_author = serializers.SerializerMethodField('get_author_status')
-
+    author_name = serializers.ReadOnlyField(source='author.username')
     # serializer method field is getting author status as boolean, to return and determine if author is equal to user
     # will use this to determine if edit and delete buttons will show up for specific author/user
+
     def get_author_status(self, article):
         return article.author == self.context.get('request').user
 
