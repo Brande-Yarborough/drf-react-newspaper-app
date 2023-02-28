@@ -13,7 +13,7 @@ function ArticleList() {
 
   useEffect(() => {
     const getCategories = async () => {
-      const response = await fetch("/api_v1/articles/categories/");
+      const response = await fetch(`/api_v1/articles/categories/`);
 
       if (!response.ok) {
         throw new Error("Network response was not OK");
@@ -41,7 +41,9 @@ function ArticleList() {
       setArticles(data);
     };
     //call getArticles
-    getArticles();
+    if (!!selectedCategory) {
+      getArticles();
+    }
   }, [selectedCategory]);
 
   const addArticle = async () => {

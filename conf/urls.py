@@ -24,8 +24,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api_v1/', include('api.urls', namespace="api_v1")),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    # path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-    # path for registration since dj-rest-auth no longer gives back token
     path('dj-rest-auth/registration/', CustomRegisterView.as_view()),
 
     path('', include('frontend.urls')),

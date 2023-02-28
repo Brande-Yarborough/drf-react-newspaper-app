@@ -15,11 +15,13 @@ class CategoryListAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     # what it looks like, this is how you need to return them
     serializer_class = CategorySerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = (IsAuthorOrReadOnly)
 
 
 # API end point to show all articles, List gets many records
