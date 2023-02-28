@@ -2,6 +2,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_STATE = {
   username: "",
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
 function RegistrationForm(props) {
   const [state, setState] = useState(INITIAL_STATE);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     const { name, value } = e.target; //value of this inside event listener is event.target, value of this in fat arrow is LoginForm
@@ -52,7 +54,8 @@ function RegistrationForm(props) {
     const data = await response.json(); //when we login and are registered we get key
     Cookies.set("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
     //when logout, need to remove cookie
-    props.setPage("articles");
+    // props.setPage("articles");
+    navigate("/");
   };
   return (
     <>

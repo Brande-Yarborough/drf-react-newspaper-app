@@ -4,7 +4,6 @@ import Header from "../Header/Header";
 import { Outlet } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 
 function App() {
   const [isAuth, setAuth] = useState(!!Cookies.get("Authorization"));
@@ -40,12 +39,12 @@ function App() {
   return (
     //login/logout button...conditionally render which button based on whether or not a user is logged in or not
     <>
-      <Header isAuth={isAuth} />
-      {isAuth && (
+      <Header isAuth={isAuth} handleLogout={handleLogout} />
+      {/* {isAuth && (
         <Button variant="primary" type="button" onClick={handleLogout}>
           Logout
         </Button>
-      )}
+      )} */}
 
       <Outlet context={[setAuth]} />
       {/* {page === "articles" && ( */}

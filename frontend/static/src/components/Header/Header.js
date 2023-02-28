@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
-function Header() {
+function Header({ isAuth, handleLogout }) {
   return (
     <>
       <nav>
@@ -10,6 +11,13 @@ function Header() {
           </li>
           <li className="nav-item">
             <NavLink to="/register">Register</NavLink>
+          </li>
+          <li className="nav-item">
+            {isAuth && (
+              <Button variant="primary" type="button" onClick={handleLogout}>
+                Logout
+              </Button>
+            )}
           </li>
         </ul>
       </nav>
