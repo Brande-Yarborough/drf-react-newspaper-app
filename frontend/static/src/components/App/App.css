@@ -35,6 +35,16 @@ header {
   border-color: black;
 }
 
+#main-nav a {
+  text-decoration: none;
+  align-items: center;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+}
+
 .navbar {
   border-top: 1px solid #ebebeb;
   border-bottom: 3px solid;
