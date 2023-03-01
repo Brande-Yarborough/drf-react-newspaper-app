@@ -29,5 +29,22 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
 
+    DRAFT = 'DFT'
+    SUBMITTED = 'SBM'
+    PUBLISHED = 'PUB'
+    REJECTED = 'REJ'
+    ARCHIVED = 'ARC'
+
+    ARTICLE_PHASE = [
+        (DRAFT, 'Draft'),
+        (SUBMITTED, 'Submitted'),
+        (PUBLISHED, 'Published'),
+        (REJECTED, 'Rejected'),
+        (ARCHIVED, 'Archived'),
+    ]
+
+    phase = models.CharField(
+        max_length=20, choices=ARTICLE_PHASE, blank=True, default=DRAFT,)
+
     def __str__(self):
         return self.title
