@@ -22,6 +22,8 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class UserArticleSerializer(serializers.ModelSerializer):
+    author_name = serializers.ReadOnlyField(source='author.username')
+
     # https://www.django-rest-framework.org/api-guide/fields/#serializermethodfield
     # is_author = serializers.SerializerMethodField('get_author_status')
 
