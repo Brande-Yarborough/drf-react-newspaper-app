@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/esm/Button";
 
 function MyArticles() {
   const [myArticles, setMyArticles] = useState([]);
@@ -24,6 +25,14 @@ function MyArticles() {
         <Card.Title>{article.title}</Card.Title>
         <Card.Title>Author: {article.author_name}</Card.Title>
         <Card.Text>{article.body}</Card.Text>
+        <div>{article.phase}</div>
+        {article.phase === "DFT" && (
+          <>
+            <Button type="button">Edit Article</Button>
+            <Button type="submit">Delete</Button>
+            <Button type="submit">Submit for Review</Button>
+          </>
+        )}
       </Card.Body>
     </Card>
   ));
