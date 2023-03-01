@@ -11,7 +11,7 @@ function SubmitArticle() {
         image: null,
         title: '', 
         body: '', 
-        category: null,
+        category: '',
     });
 
     const handleChange = (event) => {
@@ -48,7 +48,7 @@ function SubmitArticle() {
       body: formData,
     };
 
-    const response = await fetch("/api_v1/articles/", options);
+    const response = await fetch("/api_v1/user/articles/", options);
     if (!response.ok) {
       throw new Error("Network response not ok.");
     }

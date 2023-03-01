@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Category, Article
-from .serializers import CategorySerializer, ArticleSerializer
-from .permissions import IsAuthorOrReadOnly
+from .serializers import CategorySerializer, ArticleSerializer, UserArticleSerializer
+from .permissions import IsAuthor, IsAdminOrReadOnly
 
 # Create your views here.
 # ListAPIView is prewired to accept get requests
@@ -15,17 +15,17 @@ class CategoryListAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     # what it looks like, this is how you need to return them
     serializer_class = CategorySerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
 
 
-class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-    permission_classes = (IsAuthorOrReadOnly)
+# class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+#     permission_classes = (IsAuthorOrReadOnly)
 
 
 # API end point to show all articles, List gets many records
-class ArticleListAPIView(generics.ListCreateAPIView):
+class ArticleListAPIView(generics.ListAPIView):
     # what am i getting,  go to article table and get all objects or articles
     # queryset = Article.objects.order_by('-created_at')
     # what it looks like, this is how you need to return them
@@ -37,13 +37,20 @@ class ArticleListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         category = self.request.query_params.get('category')
         return Article.objects.filter(category=category).order_by('-created_at')
-    # target for post request
+
+
+class UserArticleListAPIView(generics.ListCreateAPIView):
+    serializer_class = UserArticleSerializer
+    permission_classes = (IsAuthor,)
+
+    def get_queryset(self):
+        return Article.objects.filter(author=self.request.user).order_by('-created_at')
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
 
-class ArticleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class UserArticleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = (IsAuthorOrReadOnly,)
+    permission_classes = (IsAuthor,)
