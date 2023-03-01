@@ -8,6 +8,8 @@ import LoginForm from "./components/Auth/LoginForm";
 import RegistrationForm from "./components/Auth/RegistrationForm";
 import reportWebVitals from "./reportWebVitals";
 import ArticleList from "./components/ArticleList";
+import SubmitArticle from "./components/Article/SubmitArticle";
+import MyArticles from "./components/Article/MyArticles";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +22,8 @@ root.render(
           {/* Index routes render into their parent's Outlet at their parent's URL (like a default child route). */}
           {/* https://reactrouter.com/en/main/route/route#index */}
           <Route index element={<ArticleList />} />
+          <Route path="submit" element={<SubmitArticle />} />
+          <Route path="my-articles" element={<MyArticles />} />
         </Route>
         {/* //always put this at bottom for 404 page */}
         <Route
