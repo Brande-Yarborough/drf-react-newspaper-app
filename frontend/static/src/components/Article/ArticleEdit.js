@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 
 function ArticleEdit(props) {
   const [isEditing, setIsEditing] = useState(false);
+  const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState({
     ...props,
   });
@@ -52,7 +53,32 @@ function ArticleEdit(props) {
     }
 
     const data = await response.json();
-    console.log(data);
+    setIsEditing(false);
+  };
+
+  const deleteArticle = async (event) => {
+    const id = event.currentTarget.value;
+    const options = {
+      method: "DELETE",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+      },
+    };
+    const response = await fetch(`/api_v1/user/articles/${props.id}/`, options);
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    } else {
+      console.log(response);
+      //create shallow copy of articles
+      let updatedArticles = [...articles];
+      //find index of article we want to delete
+      const index = updatedArticles.findIndex((x) => x.id == id);
+      //removing article from array
+      updatedArticles.splice(index, 1);
+      //reset state with updatedArticles
+      setArticles(updatedArticles);
+      console.log(articles);
+    }
   };
 
   let myArticleHTML; //instantiating instance of new variable myArticleHTML
@@ -133,7 +159,9 @@ function ArticleEdit(props) {
               <Button type="button" onClick={() => setIsEditing(true)}>
                 Edit Article
               </Button>
-              <Button type="submit">Delete</Button>
+              <Button type="submit" onClick={deleteArticle}>
+                Delete
+              </Button>
               <Button type="submit">Submit for Review</Button>
             </>
           )}
