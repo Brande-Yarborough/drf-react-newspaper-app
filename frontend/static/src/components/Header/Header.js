@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 function Header({ isAuth, handleLogout }) {
+  const navigate = useNavigate();
+
   return (
     <>
       <nav>
@@ -42,7 +45,9 @@ function Header({ isAuth, handleLogout }) {
         </ul>
       </nav>
       <header>
-        <h1 className="news-header">The Greenville Times</h1>
+        <h1 className="news-header" onClick={() => navigate("/")}>
+          The Greenville Times
+        </h1>
       </header>
     </>
   );
