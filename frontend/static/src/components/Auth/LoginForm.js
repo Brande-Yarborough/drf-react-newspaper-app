@@ -31,6 +31,7 @@ function LoginForm(props) {
   const handleError = (err) => {
     console.warn(err);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -53,6 +54,7 @@ function LoginForm(props) {
     //when logout, need to remove cookie
     // props.setPage("articles");
     setAuth(true);
+    console.log("USER DATA", data);
     navigate("/");
   };
 

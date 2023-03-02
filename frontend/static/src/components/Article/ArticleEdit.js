@@ -162,7 +162,9 @@ function ArticleEdit(props) {
               <Button type="submit" onClick={deleteArticle}>
                 Delete
               </Button>
-              <Button type="submit">Submit for Review</Button>
+              <Button type="submit" value="SBM" onClick={handleSubmit}>
+                Submit for Review
+              </Button>
             </>
           )}
         </Card.Body>

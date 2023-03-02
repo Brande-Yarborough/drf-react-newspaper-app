@@ -16,6 +16,7 @@ function Header({ isAuth, handleLogout }) {
               </li>
             </>
           )}
+          {/* check isAuth and is not admin */}
           {isAuth && (
             <>
               <li className="nav-item">
@@ -24,8 +25,13 @@ function Header({ isAuth, handleLogout }) {
               <li className="nav-item">
                 <NavLink to="/my-articles">My Articles</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink to="/admin-view">Admin View</NavLink>
+              </li>
             </>
           )}
+          {/* check is admin? how do i do this? */}
+          {/* {username === "admin" && <div>Admin</div>} */}
           <li className="nav-item">
             {isAuth && (
               <Button variant="primary" type="button" onClick={handleLogout}>

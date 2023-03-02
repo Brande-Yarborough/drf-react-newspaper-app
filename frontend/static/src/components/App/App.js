@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
   const [isAuth, setAuth] = useState(!!Cookies.get("Authorization"));
+  const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
   // const [setAuth] = useOutletContext();

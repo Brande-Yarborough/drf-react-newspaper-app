@@ -10,6 +10,7 @@ import reportWebVitals from "./reportWebVitals";
 import ArticleList from "./components/ArticleList";
 import SubmitArticle from "./components/Article/SubmitArticle";
 import MyArticles from "./components/Article/MyArticles";
+import AdminView from "./components/Article/AdminView";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,6 +25,7 @@ root.render(
           <Route index element={<ArticleList />} />
           <Route path="submit" element={<SubmitArticle />} />
           <Route path="my-articles" element={<MyArticles />} />
+          <Route path="admin-view" element={<AdminView />} />
         </Route>
         {/* //always put this at bottom for 404 page */}
         <Route

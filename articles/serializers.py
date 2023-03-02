@@ -33,3 +33,11 @@ class UserArticleSerializer(serializers.ModelSerializer):
 
     # def get_author_status(self, article):
     #     return article.author == self.context.get('request').user
+
+
+class AdminArticleSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source='admin.username')
+
+    class Meta:
+        model = Article
+        fields = '__all__'

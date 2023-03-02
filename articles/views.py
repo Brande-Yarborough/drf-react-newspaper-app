@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Category, Article
-from .serializers import CategorySerializer, ArticleSerializer, UserArticleSerializer
+from .serializers import CategorySerializer, ArticleSerializer, UserArticleSerializer, AdminArticleSerializer
 from .permissions import IsAuthor, IsAdminOrReadOnly
 
 # Create your views here.
@@ -54,3 +54,22 @@ class UserArticleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = (IsAuthor,)
+
+
+class AdminArticleListAPIView(generics.ListCreateAPIView):
+    queryset = Article.objects.all()
+    serializer_class = AdminArticleSerializer
+    permission_classes = (IsAdminOrReadOnly,)
+
+    def get_queryset(self):
+        status_text = self.request.query_params.get("phase")
+        if status_text is None or status_text == 'ALL':
+            return Article.objects.exclude(phase='DFT')
+        else:
+            return Article.objects.filter(phase=status_text)
+
+
+class AdminArticleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = (IsAdminOrReadOnly,)
