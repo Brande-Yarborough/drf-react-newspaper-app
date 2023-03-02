@@ -9,7 +9,7 @@ urlpatterns = [
 
     # path('admin/articles/<int:pk>/,', views.AdminArticleDetailAPIView.as_view()),
     # path('admin/articles/', views.AdminArticleListAPIView.as_view()),
-    path('user/articles/<int:pk>/,', views.UserArticleDetailAPIView.as_view()),
+    path('user/articles/<int:pk>/', views.UserArticleDetailAPIView.as_view()),
     path('user/articles/', views.UserArticleListAPIView.as_view()),
     path('articles/', views.ArticleListAPIView.as_view()),
 ]

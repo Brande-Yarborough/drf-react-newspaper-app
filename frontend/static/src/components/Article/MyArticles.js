@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/esm/Button";
+import ArticleEdit from "./ArticleEdit";
 
 function MyArticles() {
   const [myArticles, setMyArticles] = useState([]);
@@ -18,26 +17,11 @@ function MyArticles() {
     getMyArticles();
   }, []);
 
-  const MyArticlesHTML = myArticles.map((article) => (
-    <Card className="card" style={{ width: "60rem" }} key={article.id}>
-      <Card.Img variant="top" src={article.image} />
-      <Card.Body>
-        <Card.Title>{article.title}</Card.Title>
-        <Card.Title>Author: {article.author_name}</Card.Title>
-        <Card.Text>{article.body}</Card.Text>
-        <div>{article.phase}</div>
-        {article.phase === "DFT" && (
-          <>
-            <Button type="button">Edit Article</Button>
-            <Button type="submit">Delete</Button>
-            <Button type="submit">Submit for Review</Button>
-          </>
-        )}
-      </Card.Body>
-    </Card>
+  const MyArticleListHTML = myArticles.map((article) => (
+    <ArticleEdit key={article.id} {...article} />
   ));
 
-  return <div>{MyArticlesHTML}</div>;
+  return <div>{MyArticleListHTML}</div>;
 }
 
 export default MyArticles;
