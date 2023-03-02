@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Category, Article
 from .serializers import CategorySerializer, ArticleSerializer, UserArticleSerializer, AdminArticleSerializer
@@ -73,3 +75,23 @@ class AdminArticleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     permission_classes = (IsAdminOrReadOnly,)
+
+
+@api_view(['PUT'])
+def publishArticle(request, pk):
+    instance = get_object_or_404(Article, pk=pk)
+    instance.is_published = True
+    instance.phase = 'PUB'
+    instance.save()
+    serializer = ArticleSerializer(instance)
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def rejectArticle(request, pk):
+    instance = get_object_or_404(Article, pk=pk)
+    instance.is_published = True
+    instance.phase = 'REJ'
+    instance.save()
+    serializer = ArticleSerializer(instance)
+    return Response(serializer.data)

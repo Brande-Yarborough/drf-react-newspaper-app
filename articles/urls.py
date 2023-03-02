@@ -7,6 +7,8 @@ urlpatterns = [
     # path('<int:pk>/', views.CategoryDetailAPIView.as_view()),
     # path('articles/<int:pk>/', views.ArticleDetailAPIView.as_view()),
 
+    path('admin/articles/<int:pk>/reject/', views.rejectArticle),
+    path('admin/articles/<int:pk>/publish/', views.publishArticle),
     path('admin/articles/<int:pk>/', views.AdminArticleDetailAPIView.as_view()),
     path('admin/articles/', views.AdminArticleListAPIView.as_view()),
     path('user/articles/<int:pk>/', views.UserArticleDetailAPIView.as_view()),

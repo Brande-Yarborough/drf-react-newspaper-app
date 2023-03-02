@@ -23,7 +23,7 @@ function AdminView(article) {
     getAdminArticles();
   }, []);
 
-  const updatePhase = async (event) => {
+  const updatePhasePublish = async (event) => {
     event.preventDefault();
     const phase = event.target.value;
     const id = event.target.dataset.id;
@@ -43,7 +43,10 @@ function AdminView(article) {
       body: JSON.stringify({ phase }),
     };
 
-    const response = await fetch(`/api_v1/admin/articles/${id}/`, options);
+    const response = await fetch(
+      `/api_v1/admin/articles/${id}/publish/`,
+      options
+    );
     if (!response.ok) {
       throw new Error("Network response not ok.");
     }
@@ -52,6 +55,37 @@ function AdminView(article) {
     console.log(data);
   };
 
+  const updatePhaseReject = async (event) => {
+    event.preventDefault();
+    const phase = event.target.value;
+    const id = event.target.dataset.id;
+
+    const formData = new FormData();
+
+    formData.append("title", article.title);
+    formData.append("body", article.body);
+    formData.append("category", article.category);
+
+    const options = {
+      method: "PUT",
+      headers: {
+        "X-CSRFToken": Cookies.get("csrftoken"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ phase }),
+    };
+
+    const response = await fetch(
+      `/api_v1/admin/articles/${id}/reject/`,
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network response not ok.");
+    }
+
+    const data = await response.json();
+    console.log(data);
+  };
   const AdminArticlesListHTML = adminArticles.map((article) => (
     //////////Shows admin view for articles//////////
     <Container id="admin-view-container">
@@ -68,7 +102,7 @@ function AdminView(article) {
               // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
               data-id={article.id}
               value="PUB"
-              onClick={updatePhase}
+              onClick={updatePhasePublish}
             >
               Publish
             </Button>
@@ -76,7 +110,7 @@ function AdminView(article) {
               type="button"
               data-id={article.id}
               value="REJ"
-              onClick={updatePhase}
+              onClick={updatePhaseReject}
             >
               Reject
             </Button>
