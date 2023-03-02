@@ -82,6 +82,7 @@ function ArticleEdit(props) {
   };
 
   let myArticleHTML; //instantiating instance of new variable myArticleHTML
+  //////////This will show the edit article option form//////////
   if (isEditing) {
     myArticleHTML = (
       <Container>
@@ -145,30 +146,34 @@ function ArticleEdit(props) {
         </Form>
       </Container>
     );
+
+    //////////This will show the list of my articles//////////
   } else {
     myArticleHTML = (
-      <Card className="card" style={{ width: "60rem" }} key={article.id}>
-        <Card.Img variant="top" src={article.image} />
-        <Card.Body>
-          <Card.Title>{article.title}</Card.Title>
-          <Card.Title>Author: {article.author_name}</Card.Title>
-          <Card.Text>{article.body}</Card.Text>
-          <div>{article.phase}</div>
-          {article.phase === "DFT" && (
-            <>
-              <Button type="button" onClick={() => setIsEditing(true)}>
-                Edit Article
-              </Button>
-              <Button type="submit" onClick={deleteArticle}>
-                Delete
-              </Button>
-              <Button type="submit" value="SBM" onClick={handleSubmit}>
-                Submit for Review
-              </Button>
-            </>
-          )}
-        </Card.Body>
-      </Card>
+      <Container id="my-articles-container">
+        <Card className="card" style={{ width: "60rem" }} key={article.id}>
+          <Card.Img variant="top" src={article.image} />
+          <Card.Body>
+            <Card.Title>{article.title}</Card.Title>
+            <Card.Title>Author: {article.author_name}</Card.Title>
+            <Card.Text>{article.body}</Card.Text>
+            <div>{article.phase}</div>
+            {article.phase === "DFT" && (
+              <>
+                <Button type="button" onClick={() => setIsEditing(true)}>
+                  Edit Article
+                </Button>
+                <Button type="submit" onClick={deleteArticle}>
+                  Delete
+                </Button>
+                <Button type="submit" value="SBM" onClick={handleSubmit}>
+                  Submit for Review
+                </Button>
+              </>
+            )}
+          </Card.Body>
+        </Card>
+      </Container>
     );
   }
 

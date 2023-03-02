@@ -86,10 +86,10 @@ function SubmitArticle() {
       <option value={5}>Food</option>
     </Form.Select>
 
-      <Button variant="primary" type="submit" value="DFT" onClick={handleSubmit}>
+      <Button variant="primary" id="submit-article" type="submit" value="DFT" onClick={handleSubmit}>
         Save as Draft
       </Button>
-      <Button variant="primary" type="submit" value="SBM" onClick={handleSubmit}>
+      <Button variant="primary" id="submit-article" type="submit" value="SBM" onClick={handleSubmit}>
         Submit for Review
       </Button>
 

@@ -54,45 +54,11 @@ function LoginForm(props) {
     //when logout, need to remove cookie
     // props.setPage("articles");
     setAuth(true);
-    console.log("USER DATA", data);
     navigate("/");
   };
 
   return (
-    // <form onSubmit={handleSubmit}>
-
-    //   <label htmlFor="username"></label>
-    //   <input
-    //     id="username"
-    //     type="text"
-    //     placeholder="Enter username"
-    //     name="username"
-    //     value={state.username}
-    //     onChange={handleInput}
-    //   />
-
-    //   <label htmlFor="email"></label>
-    //   <input
-    //     id="email"
-    //     type="email"
-    //     placeholder="Enter email"
-    //     name="email"
-    //     value={state.email}
-    //     onChange={handleInput}
-    //   />
-
-    //   <label htmlFor="password">Password</label>
-    //   <input
-    //     id="password"
-    //     type="password"
-    //     placeholder="password"
-    //     name="password"
-    //     value={state.password}
-    //     onChange={handleInput}
-    //   />
-
-    //   <button type="submit">Login</button>
-    // </form>
+    
     <>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -128,25 +94,15 @@ function LoginForm(props) {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button id="login-form" variant="primary" type="submit">
           Login
         </Button>
 
-        <p>
+        <p id="register-link">
           Don't have an account? Click
-          <NavLink to="/register">here</NavLink>
+          <NavLink id="register-here" to="/register">here</NavLink>
           to register.
         </p>
-
-
-          
-          {/* <Button
-            type="button"
-            variant="link"
-            onClick={() => props.setPage("registration")}
-          >
-            here
-          </Button> */}
       </Form>
     </>
   );

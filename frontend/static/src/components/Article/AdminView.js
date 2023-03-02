@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/esm/Container";
 
 function AdminView(article) {
   const [adminArticles, setAdminArticles] = useState([]);
@@ -52,34 +53,37 @@ function AdminView(article) {
   };
 
   const AdminArticlesListHTML = adminArticles.map((article) => (
-    <Card className="card" style={{ width: "60rem" }} key={article.id}>
-      <Card.Img variant="top" src={article.image} />
-      <Card.Body>
-        <Card.Title>{article.title}</Card.Title>
-        <Card.Title>Author: {article.author_name}</Card.Title>
-        <Card.Text>{article.body}</Card.Text>
-        <div>{article.phase}</div>
-        <>
-          <Button
-            type="button"
-            // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
-            data-id={article.id}
-            value="PUB"
-            onClick={updatePhase}
-          >
-            Publish
-          </Button>
-          <Button
-            type="button"
-            data-id={article.id}
-            value="REJ"
-            onClick={updatePhase}
-          >
-            Reject
-          </Button>
-        </>
-      </Card.Body>
-    </Card>
+    //////////Shows admin view for articles//////////
+    <Container id="admin-view-container">
+      <Card className="card" style={{ width: "60rem" }} key={article.id}>
+        <Card.Img variant="top" src={article.image} />
+        <Card.Body>
+          <Card.Title>{article.title}</Card.Title>
+          <Card.Title>Author: {article.author_name}</Card.Title>
+          <Card.Text>{article.body}</Card.Text>
+          <div>{article.phase}</div>
+          <>
+            <Button
+              type="button"
+              // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
+              data-id={article.id}
+              value="PUB"
+              onClick={updatePhase}
+            >
+              Publish
+            </Button>
+            <Button
+              type="button"
+              data-id={article.id}
+              value="REJ"
+              onClick={updatePhase}
+            >
+              Reject
+            </Button>
+          </>
+        </Card.Body>
+      </Card>
+    </Container>
   ));
 
   return <div>{AdminArticlesListHTML}</div>;
