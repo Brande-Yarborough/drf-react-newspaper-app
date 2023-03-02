@@ -109,3 +109,15 @@ footer {
   color: white;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  [class*="col-"] {
+    width: 100%;
+  }
+  img {
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    align-items: center;
+  }
+}
