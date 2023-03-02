@@ -152,4 +152,7 @@ footer {
     height: 300px;
     align-items: center;
   }
+  .main-container {
+    flex-direction: column;
+  }
 }

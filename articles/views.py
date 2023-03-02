@@ -76,6 +76,8 @@ class AdminArticleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ArticleSerializer
     permission_classes = (IsAdminOrReadOnly,)
 
+# https://www.django-rest-framework.org/api-guide/views/#function-based-views
+
 
 @api_view(['PUT'])
 def publishArticle(request, pk):

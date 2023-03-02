@@ -36,7 +36,8 @@ class UserArticleSerializer(serializers.ModelSerializer):
 
 
 class AdminArticleSerializer(serializers.ModelSerializer):
-    username = serializers.ReadOnlyField(source='admin.username')
+    username = serializers.ReadOnlyField(source='author.username')
+    is_admin = serializers.ReadOnlyField(source='author.is_superuser')
 
     class Meta:
         model = Article
