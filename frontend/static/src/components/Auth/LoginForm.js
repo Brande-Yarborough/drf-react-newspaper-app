@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 // import App from "../App";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import Container from "react-bootstrap/esm/Container";
 
 
 const INITIAL_STATE = {
@@ -60,6 +61,7 @@ function LoginForm(props) {
   return (
     
     <>
+    <Container>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
@@ -104,6 +106,7 @@ function LoginForm(props) {
           to register.
         </p>
       </Form>
+      </Container>
     </>
   );
 }

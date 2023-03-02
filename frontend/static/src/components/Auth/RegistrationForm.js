@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
+import Container from "react-bootstrap/esm/Container";
 
 const INITIAL_STATE = {
   username: "",
@@ -59,59 +60,61 @@ function RegistrationForm(props) {
   };
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicUsername">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter username"
-            name="username"
-            value={state.username}
-            onChange={handleInput}
-          />
-        </Form.Group>
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter username"
+              name="username"
+              value={state.username}
+              onChange={handleInput}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword1">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            name="password1"
-            value={state.password1}
-            onChange={handleInput}
-            required
-          />
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword1">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter password"
+              name="password1"
+              value={state.password1}
+              onChange={handleInput}
+              required
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword2">
-          <Form.Label>Verify Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Verify password"
-            name="password2"
-            value={state.password2}
-            onChange={handleInput}
-            required
-          />
-          <div style={{ color: "red" }}>{error}</div>
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword2">
+            <Form.Label>Verify Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Verify password"
+              name="password2"
+              value={state.password2}
+              onChange={handleInput}
+              required
+            />
+            <div style={{ color: "red" }}>{error}</div>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            //   id="email"
-            type="email"
-            placeholder="Enter email"
-            name="email"
-            value={state.email}
-            onChange={handleInput}
-          />
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              //   id="email"
+              type="email"
+              placeholder="Enter email"
+              name="email"
+              value={state.email}
+              onChange={handleInput}
+            />
+          </Form.Group>
 
-        <Button className="register-button" variant="primary" type="submit">
-          Register
-        </Button>
-      </Form>
+          <Button className="register-button" variant="primary" type="submit">
+            Register
+          </Button>
+        </Form>
+      </Container>
     </>
   );
 }
