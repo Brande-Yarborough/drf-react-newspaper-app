@@ -30,6 +30,7 @@ function App() {
     Cookies.remove("Authorization", `Token ${data.key}`); //set auth cookie and value is token with key value when logged in and registered
     //when logout, need to remove cookie
     setAuth(false);
+    setUser(null);
     navigate("/");
   };
 
@@ -40,14 +41,14 @@ function App() {
   return (
     //login/logout button...conditionally render which button based on whether or not a user is logged in or not
     <>
-      <Header isAuth={isAuth} handleLogout={handleLogout} />
+      <Header isAuth={isAuth} handleLogout={handleLogout} user={user} />
       {/* {isAuth && (
         <Button variant="primary" type="button" onClick={handleLogout}>
           Logout
         </Button>
       )} */}
 
-      <Outlet context={[setAuth]} />
+      <Outlet context={[setAuth, setUser]} />
       {/* {page === "articles" && ( */}
 
       {/* <Navbar className="navbar" bg="light" variant="light">

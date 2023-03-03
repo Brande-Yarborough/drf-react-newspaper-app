@@ -86,6 +86,8 @@ function AdminView(article) {
     const data = await response.json();
     console.log(data);
   };
+  console.log(adminArticles);
+
   const AdminArticlesListHTML = adminArticles.map((article) => (
     //////////Shows admin view for articles//////////
     <Container id="admin-view-container">
@@ -93,7 +95,7 @@ function AdminView(article) {
         <Card.Img variant="top" src={article.image} />
         <Card.Body>
           <Card.Title>{article.title}</Card.Title>
-          <Card.Title>Author: {article.author_name}</Card.Title>
+          <Card.Title>Author: {article.username}</Card.Title>
           <Card.Text>{article.body}</Card.Text>
           <div>{article.phase}</div>
           <>

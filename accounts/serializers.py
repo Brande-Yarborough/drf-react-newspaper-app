@@ -15,10 +15,11 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 class TokenSerializer(serializers.ModelSerializer):
     username = serializers.ReadOnlyField(source="user.username")
+    is_admin = serializers.ReadOnlyField(source='user.is_superuser')
 
     class Meta:
         model = TokenModel
-        fields = ('key', 'username')
+        fields = ('key', 'username', 'is_admin')
 
 
 class CustomTokenSerializer(TokenSerializer):

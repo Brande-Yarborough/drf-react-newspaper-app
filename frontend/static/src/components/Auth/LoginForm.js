@@ -16,8 +16,9 @@ const INITIAL_STATE = {
 
 function LoginForm(props) {
   const navigate = useNavigate();
-  const [setAuth] = useOutletContext();
+  const [setAuth, setUser] = useOutletContext();
   const [state, setState] = useState(INITIAL_STATE);
+  
 
   const handleInput = (e) => {
     const { name, value } = e.target; //value of this inside event listener is event.target, value of this in fat arrow is LoginForm
@@ -55,6 +56,8 @@ function LoginForm(props) {
     //when logout, need to remove cookie
     // props.setPage("articles");
     setAuth(true);
+    setUser({username: data.username, isAdmin: data.is_admin});
+    // setUser(data.)
     navigate("/");
   };
 

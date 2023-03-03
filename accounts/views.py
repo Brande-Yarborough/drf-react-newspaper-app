@@ -5,6 +5,7 @@ from rest_framework import generics
 from .models import Profile
 from .serializers import ProfileSerializer, CustomRegisterSerializer
 from dj_rest_auth.registration.views import RegisterView
+from dj_rest_auth.views import UserDetailsView
 from rest_framework.response import Response
 
 User = get_user_model()

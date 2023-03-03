@@ -10,6 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.username')
+    is_admin = serializers.ReadOnlyField(source='author.is_superuser')
     # serializer method field is getting author status as boolean, to return and determine if author is equal to user
     # will use this to determine if edit and delete buttons will show up for specific author/user
 

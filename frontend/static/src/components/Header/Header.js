@@ -2,8 +2,9 @@ import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
-function Header({ isAuth, handleLogout }) {
+function Header({ isAuth, handleLogout, user }) {
   const navigate = useNavigate();
+  console.log(user);
 
   return (
     <>
@@ -20,19 +21,23 @@ function Header({ isAuth, handleLogout }) {
             </>
           )}
           {/* check isAuth and is not admin */}
-          {isAuth && (
-            <>
-              <li className="nav-item">
-                <NavLink to="/submit">Submit New Article</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/my-articles">My Articles</NavLink>
-              </li>
+          <>
+            {isAuth && (
+              <>
+                <li className="nav-item">
+                  <NavLink to="/submit">Submit New Article</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/my-articles">My Articles</NavLink>
+                </li>
+              </>
+            )}
+            {user?.isAdmin && (
               <li className="nav-item">
                 <NavLink to="/admin-view">Admin View</NavLink>
               </li>
-            </>
-          )}
+            )}
+          </>
           {/* check is admin? how do i do this? */}
           {/* {username === "admin" && <div>Admin</div>} */}
           <li className="nav-item">
