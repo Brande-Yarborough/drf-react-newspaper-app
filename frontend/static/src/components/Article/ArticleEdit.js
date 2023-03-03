@@ -128,6 +128,7 @@ function ArticleEdit(props) {
           </Form.Select>
 
           <Button
+            id="draft"
             variant="primary"
             type="submit"
             value="DFT"
@@ -136,6 +137,7 @@ function ArticleEdit(props) {
             Save as Draft
           </Button>
           <Button
+            id="review"
             variant="primary"
             type="submit"
             value="SBM"
