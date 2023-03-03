@@ -8,20 +8,32 @@ function AdminView(article) {
   const [adminArticles, setAdminArticles] = useState([]);
 
   useEffect(() => {
-    const getAdminArticles = async () => {
-      const response = await fetch(`/api_v1/admin/articles/`);
+    // const getAdminArticles = async () => {
+    //   const response = await fetch(`/api_v1/admin/articles/`);
 
-      if (!response.ok) {
-        throw new Error("Network response was not OK");
-      }
-      const data = await response.json();
-      //method to get AdminArticles
-      setAdminArticles(data);
-      console.log(data);
-    };
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not OK");
+    //   }
+    //   const data = await response.json();
+    //   //method to get AdminArticles
+    //   setAdminArticles(data);
+    //   console.log(data);
+    // };
     //call getAdminArticles
     getAdminArticles();
   }, []);
+
+  const getAdminArticles = async () => {
+    const response = await fetch(`/api_v1/admin/articles/`);
+
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+    const data = await response.json();
+    //method to get AdminArticles
+    setAdminArticles(data);
+    console.log(data);
+  };
 
   const updatePhasePublish = async (event) => {
     event.preventDefault();
@@ -53,6 +65,8 @@ function AdminView(article) {
 
     const data = await response.json();
     console.log(data);
+    //fetches and resets state
+    getAdminArticles();
   };
 
   const updatePhaseReject = async (event) => {
@@ -85,12 +99,13 @@ function AdminView(article) {
 
     const data = await response.json();
     console.log(data);
+    getAdminArticles();
   };
   console.log(adminArticles);
 
   const AdminArticlesListHTML = adminArticles.map((article) => (
     //////////Shows admin view for articles//////////
-    <Container id="admin-view-container">
+    <Container id="admin-view-container" key={article.id}>
       <Card className="card" style={{ width: "60rem" }} key={article.id}>
         <Card.Img variant="top" src={article.image} />
         <Card.Body>

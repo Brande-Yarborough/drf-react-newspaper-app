@@ -158,20 +158,19 @@ function ArticleEdit(props) {
             <Card.Title>Author: {article.author_name}</Card.Title>
             <Card.Text>{article.body}</Card.Text>
             <div>{article.phase}</div>
-            {article.phase === "DFT" ||
-              ("REJ" && (
-                <>
-                  <Button type="button" onClick={() => setIsEditing(true)}>
-                    Edit Article
-                  </Button>
-                  <Button type="submit" onClick={deleteArticle}>
-                    Delete
-                  </Button>
-                  <Button type="submit" value="SBM" onClick={handleSubmit}>
-                    Submit for Review
-                  </Button>
-                </>
-              ))}
+            {(article.phase === "DFT" || "REJ") && (
+              <>
+                <Button type="button" onClick={() => setIsEditing(true)}>
+                  Edit Article
+                </Button>
+                <Button type="submit" onClick={deleteArticle}>
+                  Delete
+                </Button>
+                <Button type="submit" value="SBM" onClick={handleSubmit}>
+                  Submit for Review
+                </Button>
+              </>
+            )}
           </Card.Body>
         </Card>
       </Container>
